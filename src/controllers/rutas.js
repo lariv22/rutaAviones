@@ -1,6 +1,5 @@
 import Ruta from '../models/rutaModel.js';
 import {Graph} from '../dijsktra/graph.js';
-var jsonRutas = [];
 
 export const GetRutas = async(req, res) => {
     try {
