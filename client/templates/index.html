@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Integration</title>
+</head>
+<body>
+    <h1>Node.js and Flask Integration</h1>
+    <div class="login">
+        <h1>Login</h1>
+        <form method="get">
+            <input type="text" name="origen" placeholder="Origen" required="required" />
+            <input type="text" name="destino" placeholder="Destino" required="required" />
+            
+            <button onclick="getSiguienteCiudad(origen, destino)">Get Siguiente Ciudad</button>
+        </form>
+    </div>
+    <button onclick="getRutas()">Get Rutas</button>
+    <p id="apiResponse">HOLA</p>
+
+    <script>
+        function getRutas() {
+            fetch('/get-rutas')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('apiResponse').innerHTML = 'Rutas: ' + JSON.stringify(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function getSiguienteCiudad(origen, destino) {
+            fetch(`/get-siguiente-ciudad?origen=${origen}&destino=${destino}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('apiResponse').innerHTML = 'Siguiente Ciudad: ' + JSON.stringify(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

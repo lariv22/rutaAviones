@@ -34,16 +34,24 @@ export class Graph {
         });
     }
 
-    calcularSiguiente(jsonRutas, origen, destino) { 
+    calcularSiguiente(jsonRutas, origen, destino, ciudades) { 
         let graph = new Graph();
 
         graph.llenarGraph(graph, jsonRutas);
         console.log(graph);
         const paths = this.DijkstraShortestPath(graph.transformToList(), origen, destino);
-        
+        let nombres = {};
+        console.log("ID: "  + ciudades[1].dataValues.id + " Nombre: " +  ciudades[1].dataValues.nombre  );
+        ciudades.forEach(element => {
+            nombres[element.dataValues.id] = element.dataValues.nombre;
+        })
+        let trayecto = [];
+        paths.path.forEach(numero => {
+            trayecto.push(nombres[numero]);
+        })
         return {
-            SiguienteCiudad: paths.path[1],
-            Trayecto: paths.path,
+            SiguienteCiudad: nombres[paths.path[1]],
+            Trayecto: trayecto,
             Distancia: paths.distance
         };
     }
