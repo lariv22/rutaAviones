@@ -1,11 +1,10 @@
 export class Node {
-    constructor(value){
-        this.value = value;
-        this.edges = [];
+    constructor(origen){
+        this.origen = origen;
+        this.edges = {};  
     }
 
-    addEdge(value, weight) {
-        this.edges.push([value, weight]);
+    addEdge(destino, peso) {
+        this.edges[destino] = peso; 
     }
 }
-

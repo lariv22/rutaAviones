@@ -16,9 +16,9 @@ export const GetSiguienteCiudad = async(req, res) => {
     try {
         const rutas = await Ruta.findAll();
         const graph = new Graph();
-        graph.calcularSiguiente(rutas);
+        res.json(graph.calcularSiguiente(rutas));
 
-        res.json(rutas);
+        //res.json(rutas);
     } catch (error) {
         console.log(error);
     }
