@@ -8,4 +8,4 @@ const db = new Sequelize('aviones', 'root', '666666', {
     dialect: "mysql",
 });
 
-export default db;
+export default db; 
