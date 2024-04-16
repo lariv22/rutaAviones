@@ -14,12 +14,19 @@ export const GetRutas = async(req, res) => {
 
 export const GetSiguienteCiudad = async(req, res) => {
     try {
+        const origen = req.query.origen;
+        const destino = req.query.destino;
+        
+        if(!origen || !destino) {
+            return res.status(400).json({error: "Falta ubicación de origen y/o destino"});
+        }
+
         const rutas = await Ruta.findAll();
         const graph = new Graph();
-        res.json(graph.calcularSiguiente(rutas));
+        res.json(graph.calcularSiguiente(rutas, origen, destino));
 
-        //res.json(rutas);
     } catch (error) {
         console.log(error);
+        res.status(500).json({error: 'Internal Server Error'});
     }
 }

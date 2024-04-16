@@ -30,20 +30,22 @@ export class Graph {
         jsonRutas.forEach(ruta => {
             graph.addNode(ruta.origen);
             graph.addNode(ruta.destino);
-            graph.addEdge(ruta.origen, ruta.destino, ruta.tiempo);
+            graph.addEdge(ruta.origen, ruta.destino, (ruta.tiempo + ruta.trafico + ruta.animales*0.2));
         });
     }
 
-    calcularSiguiente(jsonRutas) { //Falta Poner origen y destino desde la consulta de cliente
-        const origen = '5';
-        const destino = '9';
+    calcularSiguiente(jsonRutas, origen, destino) { 
         let graph = new Graph();
 
         graph.llenarGraph(graph, jsonRutas);
         console.log(graph);
         const paths = this.DijkstraShortestPath(graph.transformToList(), origen, destino);
         
-        return paths; // Devuelve la ruta y la distancia/peso total
+        return {
+            SiguienteCiudad: paths.path[1],
+            Trayecto: paths.path,
+            Distancia: paths.distance
+        };
     }
 
     transformToList() {
