@@ -1,7 +1,7 @@
 import Ruta from '../models/rutaModel.js';
 import {Graph} from '../dijsktra/graph.js';
 import Ciudad from '../models/ciudadModel.js';
-
+// Método que consigue todas las ciudades
 export const GetCiudades = async(req, res) => {
     try {
         const ciudades = await Ciudad.findAll();
@@ -10,7 +10,7 @@ export const GetCiudades = async(req, res) => {
         console.log(error);
     }
 }
-
+// Método que consigue todas las rutas
 export const GetRutas = async(req, res) => {
     try {
         const rutas = await Ruta.findAll();
@@ -19,7 +19,7 @@ export const GetRutas = async(req, res) => {
         console.log(error);
     }
 }
-
+// Método para conseguir la siguiente ciudad más próxima de un trayecto de varios nodos
 export const GetSiguienteCiudad = async(req, res) => {
     try {
         const origen = req.query.origen;

@@ -120,7 +120,7 @@ export class Graph {
         // Si no se encontró un camino, devuelve un camino vacío y una distancia infinita
         return { path: [], distance: Infinity };
     }
-
+    // Quita el nodo más pequeño
     extractMin(queue, distances) {
         let minIndex = 0;
         for (let i = 1; i < queue.length; i++) {
@@ -128,7 +128,7 @@ export class Graph {
                 minIndex = i;
             }
         }
-        return queue.splice(minIndex, 1)[0]; // Remove and return the element at minIndex
+        return queue.splice(minIndex, 1)[0]; 
     }
     
 }
